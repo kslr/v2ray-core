@@ -27,7 +27,6 @@ jobs:
           restore-keys: ${{ runner.os }}-go-
 
       - name: Lint other files
-        if: ${{ always() }}
         uses: github/super-linter@v3.9.3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
