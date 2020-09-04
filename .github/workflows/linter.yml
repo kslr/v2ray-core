@@ -23,10 +23,19 @@ jobs:
         run: |
           go get -v -t -d ./...
 
+      - name: Set GOPATH
+        # temporary fix
+        # see https://github.com/actions/setup-go/issues/14
+        run: |
+          echo "##[set-env name=GOPATH;]$(dirname $GITHUB_WORKSPACE)"
+          echo "##[add-path]$(dirname $GITHUB_WORKSPACE)/bin"
+        shell: bash
+
       - name: Lint other files
         uses: github/super-linter@v3.9.3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTIONS_RUNNER_DEBUG: true
           VALIDATE_BASH: false
           VALIDATE_JSON: false
           VALIDATE_PROTOBUF: false
