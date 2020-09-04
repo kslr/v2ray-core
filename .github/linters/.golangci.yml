@@ -1,5 +1,5 @@
 run:
-  modules-download-mode: readonly|release|vendor
+  modules-download-mode: (release|readonly|vendor)
   skip-dirs:
     - generated.*
     - external
